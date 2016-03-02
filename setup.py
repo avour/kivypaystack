@@ -7,7 +7,7 @@ setup(name='pypaystack',
       author='Edward Popoola',
       author_email='edwardpopoola@gmail.com',
       license='MIT',
-      install_requires=['requests', 'json'],
+      install_requires=['requests'],
       packages=['pypaystack'],
       zip_safe=False)
 
