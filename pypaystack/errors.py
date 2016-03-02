@@ -1,5 +1,3 @@
-
-
 class PyPaystackError(Exception):
     """
     Python Paystack Error
@@ -14,6 +12,4 @@ class InvalidAmountError(PyPaystackError):
 
 class MissingAuthKeyError(PyPaystackError):
     pass
-
-
 

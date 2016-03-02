@@ -8,7 +8,8 @@ class Transaction(object):
 
     """
     This class is used to represent all the activitivies that
-    can be performed on behalf of a user, given email, auth_code and amount
+    can be performed on behalf of a user, given the user's email and 
+    their AUTH Code
     """
 
     _PAYSTACK_AUTHORIZATION_KEY = os.getenv('PAYSTACK_AUTHORIZATION_KEY', None)
@@ -23,6 +24,7 @@ class Transaction(object):
         self._auth_code = auth_code
         if not self._PAYSTACK_AUTHORIZATION_KEY:
             raise MissingAuthKeyError("Set your authorization key as environment variable PAYSTACK_AUTHORIZATION_KEY")
+
 
     def _headers(self, authorization_key=None, content_type=None):
         if authorization_key is None:
@@ -45,7 +47,7 @@ class Transaction(object):
 
         return status, message, data
 
- 
+
     def charge(self, amount):
         """
         Charges a customer and returns the response
@@ -67,7 +69,7 @@ class Transaction(object):
 
         return status_code, status, message, data 
 
-         
+     
     def verify(self, reference):
         """
         Verifies a transaction using the provided reference number
