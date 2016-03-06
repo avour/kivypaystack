@@ -29,8 +29,8 @@ from pypaystack import Transaction, Customer, Plan
 All Response objects are a tuple containing status_code, status, message and data
 """
 
-#Initialize the transaction object to handle transactions. Pass in your authorization key  
-(if not set as environment variable PAYSTACK_AUTHORIZATION_KEY) 
+#Initialize the transaction object to handle transactions. Pass in your authorization key - if not set  
+#as environment variable PAYSTACK_AUTHORIZATION_KEY) 
 
 transaction = Transaction(authorization_key="sk_myauthorizationkeyfromthepaystackguys")
 response = transaction.charge("customer@domain.com", "CustomerAUTHcode", 10000) #Charge a customer N100.
