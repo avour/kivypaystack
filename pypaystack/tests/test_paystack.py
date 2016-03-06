@@ -8,15 +8,14 @@ BASE_URL = "https://api.paystack.co"
 class TestTransaction(TestCase):
    
     def setUp(self):
-        super(TestPaystack, self).setUp()
+        super(TestTransaction, self).setUp()
         self.test_auth_key = os.getenv('PAYSTACK_AUTHORIZATION_KEY', None)
         self.transaction = Transaction()
         
  
     def test_charge(self):
-        self.transaction
-        (status_code, _ , _, _) = self.transaction.charge("AUTH_mwei8io4", "ahmedrazaq@cloud.com", 1000)
-        self.assertEqual(status_code, 200)
+        (status_code, _ , _, _) = self.transaction.charge("AUTH_invalidcode", "customer@cloud.com", 1000)
+        self.assertEqual(status_code, 400)
 
 
     def test_verify(self):

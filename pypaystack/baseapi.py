@@ -66,11 +66,15 @@ class BaseAPI(object):
         if not request:
             raise InvalidMethodError("Request method not recognised or implemented")
 
-        print url
         response = request(url, headers=self._headers(), data=payload, verify=True)
 
         if response.status_code == 404:
-            return response.status_code, False, "Data Unavailable", None
+            return response.status_code, False, "The object request cannot be found", None
 
-        return self._parse_json(response)
+        if response.status_code in [200, 201]:
+            return self._parse_json(response)
+        else:
+            body = response.json()
+            return response.status_code, body.get('status'), body.get('message'), body.get('errors') 
+
 

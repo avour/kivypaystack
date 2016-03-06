@@ -54,6 +54,5 @@ response = plan.getall() #Get all plans
 
 ```
 
-##Tests
 
 
