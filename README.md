@@ -1,6 +1,6 @@
 # pypaystack
 
-A python wrapper for Paystack API (WIP)
+A simple python wrapper for Paystack API
 
 - Charge the customer
 - Verify a transaction
@@ -16,7 +16,7 @@ Store your authorization key in your environment variable as "PAYSTACK_AUTHORIZA
 pypaystack objects at initiatialization.
 
  
-```bash
+```python
 pip install pypaystack
 ```
 
