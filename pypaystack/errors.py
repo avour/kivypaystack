@@ -4,12 +4,23 @@ class PyPaystackError(Exception):
     """
     pass
 
-class InvalidAmountError(PyPaystackError):
+class MissingAuthKeyError(PyPaystackError):
     """
-    Invalid amount error"
+    We can't find the authentication key
     """
     pass
 
-class MissingAuthKeyError(PyPaystackError):
+
+class InvalidMethodError(PyPaystackError):
+    """
+    Invalid or unrecoginised/unimplemented HTTP request method
+    """
+    pass
+
+
+class InvalidDataError(PyPaystackError):
+    """
+    Invalid input recognised. Saves unecessary trip to server
+    """
     pass
 
