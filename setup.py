@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='pypaystack',
-    version='1.0',
+    version='1.1',
     description='Python wrapper for Paystack API',
     url='https://github.com/edwardpopoola/pypaystack',
     author='Edward Popoola',
@@ -9,7 +9,7 @@ setup(name='pypaystack',
     license='MIT',
     test_suite='nose.collector',
     tests_require=['nose'],
-    install_requires=['requests[security]'],
+    install_requires=['requests'],
     packages=['pypaystack'],
     zip_safe=False
     )
