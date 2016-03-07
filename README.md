@@ -17,7 +17,7 @@ pypaystack objects at initiatialization.
 
  
 ```python
-pip install pypaystack
+pip install -U pypaystack
 ```
 
 ##Examples

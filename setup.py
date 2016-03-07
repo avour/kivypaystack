@@ -1,12 +1,13 @@
 from setuptools import setup
+from pypaystack import version
 
 setup(name='pypaystack',
-    version='1.1',
+    version=version.__version__,
     description='Python wrapper for Paystack API',
     url='https://github.com/edwardpopoola/pypaystack',
-    author='Edward Popoola',
+    author=version.__author__,
     author_email='edwardpopoola@gmail.com',
-    license='MIT',
+    license=version.__license__,
     test_suite='nose.collector',
     tests_require=['nose'],
     install_requires=['requests'],

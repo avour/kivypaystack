@@ -1,6 +1,8 @@
 import os
 import requests
 import json
+import version
+ 
 from .errors import *
 
 class BaseAPI(object):
@@ -28,7 +30,11 @@ class BaseAPI(object):
 
 
     def _headers(self):
-        return { "Content-Type": self._CONTENT_TYPE, "Authorization": "Bearer " + self._PAYSTACK_AUTHORIZATION_KEY }
+        return { 
+                "Content-Type": self._CONTENT_TYPE, 
+                "Authorization": "Bearer " + self._PAYSTACK_AUTHORIZATION_KEY,
+                "user-agent": "pyPaystack-{}".format(version.__version__)
+                }
 
 
     def _parse_json(self, response_obj):
@@ -67,7 +73,6 @@ class BaseAPI(object):
             raise InvalidMethodError("Request method not recognised or implemented")
 
         response = request(url, headers=self._headers(), data=payload, verify=True)
-
         if response.status_code == 404:
             return response.status_code, False, "The object request cannot be found", None
 
