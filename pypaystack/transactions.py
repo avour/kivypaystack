@@ -98,6 +98,6 @@ class Transaction(BaseAPI):
         
         reference = str(reference)
         url = self._url("/transaction/verify/{}".format(reference))
-        return self._handle_request('POST', url)
+        return self._handle_request('GET', url)
 
 
