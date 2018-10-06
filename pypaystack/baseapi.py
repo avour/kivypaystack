@@ -1,7 +1,7 @@
 import os
 import requests
 import json
-import version
+from pypaystack import version
  
 from .errors import *
 

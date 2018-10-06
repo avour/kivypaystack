@@ -1,5 +1,5 @@
-from baseapi import BaseAPI
-import utils
+from .baseapi import BaseAPI
+from pypaystack import utils
 
  
 class Transaction(BaseAPI):
