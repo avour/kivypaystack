@@ -49,7 +49,8 @@ class BaseAPI(object):
         status = parsed_response.get('status', None)
         message = parsed_response.get('message', None)
         data = parsed_response.get('data', None)
-
+        #if data:
+        #    message = data.get('gateway_response', None) 
         return response_obj.status_code, status, message, data
 
 
