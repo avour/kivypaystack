@@ -80,7 +80,7 @@ class BaseAPI(object):
             on_failure=None
             on_redirect=None
 
-        payload = urllib.urlencode(data)
+        payload = json.dumps(data)
         UrlRequest(url, 
                     req_headers=self._headers(),
                     req_body=payload,
