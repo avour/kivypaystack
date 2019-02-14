@@ -32,7 +32,7 @@ class Plan(BaseAPI):
                 "hosted_page_url": hosted_page_url,
                 "hosted_page_summary": hosted_page_summary,
                 }
-        return self._handle_request('POST', url, payload)
+        return self._handle_request('create', 'POST', url, payload)
 
 
     def update(self, plan_id, name, amount, interval, description=None, \
@@ -63,7 +63,7 @@ class Plan(BaseAPI):
                 "hosted_page_url": hosted_page_url,
                 "hosted_page_summary": hosted_page_summary,
                 }
-        return self._handle_request('PUT', url, payload)
+        return self._handle_request('update', 'PUT', url, payload)
 
 
     def getall(self, pagination=10):
@@ -71,7 +71,7 @@ class Plan(BaseAPI):
         Gets all plans
         """
         url = self._url("/plan/?perPage="+str(pagination))
-        return self._handle_request('GET', url)
+        return self._handle_request('getall', 'GET', url)
 
 
     def getone(self, plan_id):
@@ -80,5 +80,5 @@ class Plan(BaseAPI):
         Requires: plan_id
         """
         url = self._url("/plan/{}/".format(plan_id))
-        return self._handle_request('GET', url)
+        return self._handle_request('getone', 'GET', url)
 

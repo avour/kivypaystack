@@ -1,12 +1,13 @@
 import os
-# import requests
+import urllib
 import json
+from functools import partial
+
 from kivypaystack import version
  
 from .errors import *
 
 from kivy.network.urlrequest import UrlRequest
-import urllib
 
 class BaseAPI(object):
 
@@ -26,7 +27,8 @@ class BaseAPI(object):
             self._PAYSTACK_AUTHORIZATION_KEY = os.getenv('PAYSTACK_AUTHORIZATION_KEY', None)
         if not self._PAYSTACK_AUTHORIZATION_KEY:
             raise MissingAuthKeyError("Missing Authorization key argument or env variable")
-
+        
+        self.callback = callback
 
     def _url(self, path):
         return self._BASE_END_POINT + path
@@ -67,14 +69,26 @@ class BaseAPI(object):
         if method not in method_map:
             raise InvalidMethodError("Request method not recognised or implemented")
 
+        if self.callback:
+            on_error=partial(self.callback, action, 'error')
+            on_success=partial(self.callback, action, 'success')
+            on_failure=partial(self.callback, action, 'failure')
+            on_redirect=partial(self.callback, action, 'redirect')
+        else:
+            on_error=None
+            on_success=None
+            on_failure=None
+            on_redirect=None
+
         payload = urllib.urlencode(data)
-        UrlRequest(url, req_headers==self._headers(),
+        UrlRequest(url, 
+                    req_headers=self._headers(),
                     req_body=payload,
                     method=method,
-                    on_error=partial(self.callback, action, 'error'),
-                    on_success=partial(self.callback, action, 'error'),
-                    on_failure=partial(self.callback, action, 'error'),
-                    on_redirect=partial(self.callback, action, 'error'),
+                    on_error=on_error,
+                    on_success=on_success,
+                    on_failure=on_failure,
+                    on_redirect=on_redirect,
         )
 
 

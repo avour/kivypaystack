@@ -19,7 +19,7 @@ class Customer(BaseAPI):
                 "email": email, 
                 "phone": phone
                 }
-        return self._handle_request('create', POST', url, payload)
+        return self._handle_request('create', 'POST', url, payload)
 
 
     def update(self, user_id, email, first_name=None, last_name=None, phone=None):
@@ -40,7 +40,7 @@ class Customer(BaseAPI):
                 "email": email,
                 "phone": phone
                 }
-        return self._handle_request('update', PUT', url, payload)
+        return self._handle_request('update', 'PUT', url, payload)
 
 
     def getall(self, pagination=10):
@@ -52,7 +52,7 @@ class Customer(BaseAPI):
         pagination -- Count of data to return per call
         """
         url = self._url("/customer/?perPage="+str(pagination))
-        return self._handle_request('getall', GET', url)
+        return self._handle_request('getall', 'GET', url)
 
 
     def getone(self, user_id):

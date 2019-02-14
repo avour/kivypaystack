@@ -12,7 +12,7 @@ class Transaction(BaseAPI):
         pagination -- Count of data to return per call 
         """
         url = self._url("/transaction/?perPage="+str(pagination))
-        return self._handle_request('GET', url)
+        return self._handle_request('getall', 'GET', url)
 
 
     def getone(self, transaction_id):
@@ -23,7 +23,7 @@ class Transaction(BaseAPI):
         Transaction_id -- transaction we want to get
         """
         url = self._url("/transaction/{}/".format(transaction_id))
-        return self._handle_request('GET', url)
+        return self._handle_request('getone', 'GET', url)
 
 
     def totals(self):
@@ -31,7 +31,7 @@ class Transaction(BaseAPI):
         Gets transaction totals
         """
         url = self._url("/transaction/totals/")
-        return self._handle_request('GET', url)
+        return self._handle_request('totals', 'GET', url)
 
 
     def initialize(self, email, amount, plan=None, reference=None, channel=None, metadata=None):
@@ -60,7 +60,7 @@ class Transaction(BaseAPI):
                     "channels": channel,
                     "metadata": {"custom_fields":metadata}
                 }
-        return self._handle_request('POST', url, payload)
+        return self._handle_request('initialize', 'POST', url, payload)
 
 
     def charge(self, email, auth_code, amount, reference=None):
@@ -89,7 +89,7 @@ class Transaction(BaseAPI):
                     "reference": reference
                 }
 
-        return self._handle_request('POST', url, payload)
+        return self._handle_request('charge', 'POST', url, payload)
 
      
     def verify(self, reference):
@@ -102,6 +102,6 @@ class Transaction(BaseAPI):
         
         reference = str(reference)
         url = self._url("/transaction/verify/{}".format(reference))
-        return self._handle_request('GET', url)
+        return self._handle_request('verify', 'GET', url)
 
 
