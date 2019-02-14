@@ -3,7 +3,7 @@ from kivypaystack import version
 
 setup(name='kivypaystack',
     version=version.__version__,
-    description='Python wrapper for Paystack API',
+    description='A port of pypaystack to support the kivy framework',
     url='https://github.com/avour/kivypaystack',
     author=version.__author__,
     author_email='avour123@gmail.com',
@@ -12,4 +12,3 @@ setup(name='kivypaystack',
     packages=['kivypaystack'],
     zip_safe=False
     )
-
