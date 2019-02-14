@@ -34,7 +34,7 @@ class Transaction(BaseAPI):
         return self._handle_request('GET', url)
 
 
-    def initialize(self, email, amount, plan=None, reference=None):
+    def initialize(self, email, amount, plan=None, reference=None, channel=None):
         """
         Initialize a transaction and returns the response
         
@@ -43,6 +43,7 @@ class Transaction(BaseAPI):
         amount -- Amount to charge
         plan -- optional
         Reference -- optional
+        channel -- channel type to use
         """
         amount = utils.validate_amount(amount)
 
@@ -54,7 +55,8 @@ class Transaction(BaseAPI):
                     "email":email,
                     "amount": amount,
                     "reference": reference,
-                    "plan": plan
+                    "plan": plan,
+                    "channels": channel
                 }
         return self._handle_request('POST', url, payload)
 
