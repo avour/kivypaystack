@@ -57,7 +57,7 @@ class Transaction(BaseAPI):
                     "amount": amount,
                     "reference": reference,
                     "plan": plan,
-                    "channels": channel
+                    "channels": channel,
                     "metadata": {"custom_fields":metadata}
                 }
         return self._handle_request('POST', url, payload)
