@@ -1,4 +1,4 @@
-# pypaystack
+# kivypaystack
 
 A simple python wrapper for Paystack API
 

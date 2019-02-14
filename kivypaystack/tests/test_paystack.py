@@ -1,6 +1,6 @@
 import os
 from  unittest import TestCase
-from pypaystack import Customer, Transaction, Plan
+from kivypaystack import Customer, Transaction, Plan
 
 
 BASE_URL = "https://api.paystack.co"

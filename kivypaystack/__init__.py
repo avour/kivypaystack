@@ -1,4 +1,4 @@
-#from .import version
+from .import version
 
 from .customers import Customer
 from .transactions import Transaction

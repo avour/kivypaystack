@@ -1,0 +1,5 @@
+__title__ = 'kivypaystack'
+__version__ = '1.17'
+__author__ = 'avour'
+__license__ = 'MIT'
+__copyright__ = 'Copyright 2019. avour'

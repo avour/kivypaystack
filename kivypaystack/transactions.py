@@ -1,5 +1,5 @@
 from .baseapi import BaseAPI
-from pypaystack import utils
+from kivypaystack import utils
 
  
 class Transaction(BaseAPI):

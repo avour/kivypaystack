@@ -1,14 +1,17 @@
 import os
-import requests
+# import requests
 import json
-from pypaystack import version
+from kivypaystack import version
  
 from .errors import *
+
+from kivy.network.urlrequest import UrlRequest
+import urllib
 
 class BaseAPI(object):
 
     """
-    Base class for the pypaystack python API wrapper for paystack
+    Base class for the kivypaystack python API wrapper for paystack
     Not to be instantiated directly.
     """
 
@@ -16,7 +19,7 @@ class BaseAPI(object):
     _BASE_END_POINT = "https://api.paystack.co"
 
 
-    def __init__(self, authorization_key=None):
+    def __init__(self, authorization_key=None, callback=None):
         if authorization_key:
             self._PAYSTACK_AUTHORIZATION_KEY = authorization_key
         else:
@@ -54,33 +57,35 @@ class BaseAPI(object):
         return response_obj.status_code, status, message, data
 
 
-    def _handle_request(self, method, url, data=None):
+    def _handle_request(self, action, method, url, data=None):
 
         """
         Generic function to handle all API url calls
         Returns a python tuple of status code, status(bool), message, data
         """
-        method_map = {
-                    'GET':requests.get,
-                    'POST':requests.post,
-                    'PUT':requests.put,
-                    'DELETE':requests.delete
-                    }
-
-        payload = json.dumps(data) if data else data
-        request = method_map.get(method)
-
-        if not request:
+        method_map = ['GET', 'POST', 'PUT', 'DELETE',]
+        if method not in method_map:
             raise InvalidMethodError("Request method not recognised or implemented")
 
-        response = request(url, headers=self._headers(), data=payload, verify=True)
-        if response.status_code == 404:
-            return response.status_code, False, "The object request cannot be found", None
+        payload = urllib.urlencode(data)
+        UrlRequest(url, req_headers==self._headers(),
+                    req_body=payload,
+                    method=method,
+                    on_error=partial(self.callback, action, 'error'),
+                    on_success=partial(self.callback, action, 'error'),
+                    on_failure=partial(self.callback, action, 'error'),
+                    on_redirect=partial(self.callback, action, 'error'),
+        )
 
-        if response.status_code in [200, 201]:
-            return self._parse_json(response)
-        else:
-            body = response.json()
-            return response.status_code, body.get('status'), body.get('message'), body.get('errors') 
+
+        # response = request(url, headers=self._headers(), data=payload, verify=True)
+        # if response.status_code == 404:
+        #     return response.status_code, False, "The object request cannot be found", None
+
+        # if response.status_code in [200, 201]:
+        #     return self._parse_json(response)
+        # else:
+        #     body = response.json()
+        #     return response.status_code, body.get('status'), body.get('message'), body.get('errors') 
 
 
