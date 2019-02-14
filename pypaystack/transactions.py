@@ -34,7 +34,7 @@ class Transaction(BaseAPI):
         return self._handle_request('GET', url)
 
 
-    def initialize(self, email, amount, plan=None, reference=None, channel=None):
+    def initialize(self, email, amount, plan=None, reference=None, channel=None, metadata=None):
         """
         Initialize a transaction and returns the response
         
@@ -44,6 +44,7 @@ class Transaction(BaseAPI):
         plan -- optional
         Reference -- optional
         channel -- channel type to use
+        metadata -- a list if json data objects/dicts
         """
         amount = utils.validate_amount(amount)
 
@@ -57,6 +58,7 @@ class Transaction(BaseAPI):
                     "reference": reference,
                     "plan": plan,
                     "channels": channel
+                    "metadata": {"custom_fields":metadata}
                 }
         return self._handle_request('POST', url, payload)
 
