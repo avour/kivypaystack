@@ -1,5 +1,5 @@
 from setuptools import setup
-from pypaystack import version
+from kivypaystack import version
 
 setup(name='kivypaystack',
     version=version.__version__,
@@ -8,9 +8,7 @@ setup(name='kivypaystack',
     author=version.__author__,
     author_email='avour123@gmail.com',
     license=version.__license__,
-    test_suite='nose.collector',
-    tests_require=['nose'],
-    install_requires=['requests'],
+    install_requires=['kivy'],
     packages=['kivypaystack'],
     zip_safe=False
     )
