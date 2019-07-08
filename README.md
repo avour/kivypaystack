@@ -1,6 +1,6 @@
 # kivypaystack
 
-A port of pypaystack to support the kivy framework 
+A port of paystack payment system to support the kivy framework 
 
 It uses the builtin UrlRequest class to make asynchronous requests on the web and get the result when the
 request is completed, so no external module is needed
