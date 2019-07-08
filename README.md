@@ -19,7 +19,7 @@ pip it away
 pip install -U kivypaystack
 ```
 
-Register on the paystack website and get your Authorization key.  
+Register on the paystack website https://www.paystack.com and get your Authorization key.  
 you can store your authorization key in your environment variable as "PAYSTACK_AUTHORIZATION_KEY" or pass it into the  
 any kivypaystack objects at initiatialization.
 
@@ -40,7 +40,7 @@ def transaction_callback(action, result_type, request, result):
 
         request: instance of kivy.urlrequest.UrlRequest
 
-        result: a decode json dictionary
+        result: a decided json dictionary
     '''
     if action == 'charge':  # if a charge transaction was passed
         print(result_type, result)
@@ -73,6 +73,3 @@ response = plan.getone(240) #Get plan with id of 240
 response = plan.getall() #Get all plans
 
 ```
-#Todo
-Write more tests
-
